@@ -5,7 +5,7 @@ from django.utils import timezone
 
 class AbstractTag(models.Model):
     user = models.ForeignKey(TimerUser)
-    tag_name = models.CharField(max_length=30, unique=True)
+    tag_name = models.CharField(max_length=30)
     color = models.CharField(max_length=10, default="e3e3e3")
 
     class Meta:
@@ -25,6 +25,7 @@ class SubTag(AbstractTag):
 
 
 class Session(models.Model):
+    user = models.ForeignKey(TimerUser)
     duration = models.PositiveSmallIntegerField(default=25)
     start_time = models.DateTimeField(default=timezone.now)
     project = models.ForeignKey(ProjectTag, null=True, blank=True)

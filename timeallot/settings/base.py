@@ -77,6 +77,12 @@ DATABASES = {
 # Select the correct user model
 AUTH_USER_MODEL = 'user.TimerUser'
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAdminUser',
+    ],
+    'PAGE_SIZE': 10
+}
 
 # EMAIL CONFIGURATION
 # ------------------------------------------------------------------------------
