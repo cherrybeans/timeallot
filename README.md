@@ -49,4 +49,4 @@ Added a custom management command for loading all fixtures at once.
 python manage.py load_fixtures
 ```
 This only loads fixtures that have been added in the command, so to add
-new fixtures, add it in ```utils/management/commands/load_fixtures.py```.
+new fixtures, add them in ```utils/management/commands/load_fixtures.py```.
