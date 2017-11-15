@@ -29,9 +29,12 @@ import environ
 ROOT_DIR = environ.Path(__file__) - 2  # (timeallot/settings/base.py - 2 = timeallot/)
 APPS_DIR = ROOT_DIR.path('apps/')
 PUBLIC_ROOT = ROOT_DIR.path('public/')
+SETTINGS_DIR = environ.Path(__file__) - 1
 
 env = environ.Env()
-env.read_env()
+env_file = str(SETTINGS_DIR.path('.env'))
+env.read_env(env_file)
+
 # SECRET KEY
 # ------------------------------------------------------------------------------
 SECRET_KEY = env('SECRET_KEY')  # Raises ImproperlyConfigured exception if SECRET_KEY not in os.environ
@@ -78,10 +81,12 @@ AUTH_USER_MODEL = 'user.TimerUser'
 # EMAIL CONFIGURATION
 # ------------------------------------------------------------------------------
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
-# Email address that error messages come from.
-SERVER_EMAIL = env('SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
+SERVER_EMAIL = env('SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)  # Email address that error messages come from.
+EMAIL_USE_TLS = True
 EMAIL_SUBJECT_PREFIX = '[timeallot] '
-EMAIL_CONFIG = env.email('EMAIL_URL')
+
+EMAIL_CONFIG = env.email_url()
+
 vars().update(EMAIL_CONFIG)
 
 
@@ -120,6 +125,11 @@ TEMPLATES = [
 # MANAGER CONFIGURATION
 # ------------------------------------------------------------------------------
 ADMINS = env('ADMINS')
+ADMINS=(
+    ('timeallot', 'timeallot@gmail.com'),
+)
+#I'm having some issues importing data from my .env file.... -_-
+# Which is REALLY strange since it's importing the SECRET_KEY ...
 
 MANAGERS = ADMINS
 

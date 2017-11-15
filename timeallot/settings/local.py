@@ -10,11 +10,6 @@ from timeallot.settings.base import *
 # APP CONFIGURATION
 
 
-# SECRET KEY
-# ------------------------------------------------------------------------------
-SECRET_KEY = env('SECRET_KEY')  # Raises ImproperlyConfigured exception if SECRET_KEY not in os.environ
-
-
 # DEBUG
 # ------------------------------------------------------------------------------
 DEBUG = True
