@@ -34,7 +34,7 @@ env = environ.Env()
 env.read_env()
 # SECRET KEY
 # ------------------------------------------------------------------------------
-SECRET_KEY = env('SECRET_KEY') # Raises ImproperlyConfigured exception if SECRET_KEY not in os.environ
+SECRET_KEY = env('SECRET_KEY')  # Raises ImproperlyConfigured exception if SECRET_KEY not in os.environ
 
 
 # APP CONFIGURATION
@@ -53,6 +53,7 @@ THIRD_PARTY_APPS = [
 
 # Apps specific for this project go here.
 LOCAL_APPS = [
+    'utils',
     'timeallot.apps.user',
     'timeallot.apps.timer'
 ]
@@ -130,7 +131,7 @@ LANGUAGE_CODE = 'en-us'
 SITE_ID = 1
 USE_I18N = True
 USE_L10N = True
-USE_TZ = True
+USE_TZ = False
 
 
 # URL CONFIGURATION

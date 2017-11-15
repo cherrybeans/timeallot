@@ -56,7 +56,6 @@ target/
 # Pycharm
 .idea/
 
-venv/
-
 .env
 production.py
+*.yaml
