@@ -37,6 +37,7 @@ class TimerUserManager(BaseUserManager):
 
 
 class TimerUser(AbstractBaseUser, PermissionsMixin):
+    display_name = models.TextField(max_length=30, null=True, blank=True)
     email = models.EmailField(unique=True, verbose_name='email address')
     date_joined = models.DateTimeField(verbose_name='date joined', default=timezone.now)
 
@@ -64,6 +65,9 @@ class TimerUser(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return self.email.split("@")[0]
+
+    def get_display_name(self):
+        return self.display_name
 
     def __str__(self):
         return self.email

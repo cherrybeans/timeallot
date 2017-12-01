@@ -4,25 +4,44 @@ from timeallot.apps.timer.models import (
 )
 
 
-class CategorySerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Category
-        fields = ('url', 'id', 'category_name')
-
-
-class ProjectSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = ProjectTag
-        fields = ('url', 'id', 'user', 'tag_name', 'color', 'category')
-
-
 class SubtagSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = SubTag
-        fields = ('url', 'id', 'user', 'tag_name', 'color', 'parent')
+        fields = ('id', 'tag_name', 'parent', 'color', 'url',  'user')
+
+
+class ProjectSerializer(serializers.HyperlinkedModelSerializer):
+    subtags = SubtagSerializer(many=True)
+
+    class Meta:
+        model = ProjectTag
+        fields = ('id', 'tag_name', 'category', 'subtags', 'color', 'url', 'user')
+
+
+class CategorySerializer(serializers.HyperlinkedModelSerializer):
+    projects = ProjectSerializer(many=True)
+
+    class Meta:
+        model = Category
+        fields = ('id', 'category_name', 'projects', 'url')
+
+
+class SessionProjectSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = ProjectTag
+        fields = ('id', 'tag_name')
+
+
+class SessionSubtagSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = SubTag
+        fields = ('id', 'tag_name')
 
 
 class SessionSerializer(serializers.HyperlinkedModelSerializer):
+    project = SessionProjectSerializer()
+    subtags = SessionSubtagSerializer(many=True)
+
     class Meta:
         model = Session
-        fields = ('url', 'id', 'duration', 'start_time', 'project', 'subtags')
+        fields = ('id', 'duration', 'start_time', 'project', 'subtags', 'url')

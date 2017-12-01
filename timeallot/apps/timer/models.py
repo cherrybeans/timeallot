@@ -15,13 +15,22 @@ class AbstractTag(models.Model):
 class Category(models.Model):
     category_name = models.CharField(max_length=30, unique=True)
 
+    def __str__(self):
+        return self.category_name
+
 
 class ProjectTag(AbstractTag):
-    category = models.ForeignKey(Category, related_name='projects', default=1)
+    category = models.ForeignKey(Category, related_name='projects')
+
+    def __str__(self):
+        return self.tag_name
 
 
 class SubTag(AbstractTag):
     parent = models.ForeignKey(ProjectTag, related_name='subtags')
+
+    def __str__(self):
+        return self.tag_name
 
 
 class Session(models.Model):

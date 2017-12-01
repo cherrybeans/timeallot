@@ -5,4 +5,4 @@ from timeallot.apps.user.models import TimerUser
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = TimerUser
-        fields = ('url', 'id', 'email', 'date_joined', 'is_active', 'is_admin')
+        fields = ('id', 'email', 'display_name', 'date_joined', 'last_login', 'is_active', 'is_admin', 'url')
