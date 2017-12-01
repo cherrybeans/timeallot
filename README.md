@@ -24,7 +24,7 @@ source ~/.local/bin/virtualenvwrapper.sh
 
 ### Create virtualenv with virtualenvwrapper:
 ```sh
-$ mkvirtualenv -p python3.6 timeallot
+$ mkproject -p python3.6 timeallot
 ```
 
 #### Adding/Upgrading packages
@@ -55,14 +55,14 @@ $ mv timeallot timeallot-tmp
 ```
 3. Create the new virtual environment (and project dir) and activate:
 ```
-$ mkvirtualenv -p python3.6 timeallot
+$ mkproject -p python3.6 timeallot
 ```
 4. Replace the empty generated dir with real dir, and change back into project dir:
 ```sh
 $ cd ..
 $ mv -f timeallot-tmp timeallot
 $ cd timeallot
-```
+```workon 
 5. Confirm new Python version and re-install dependencies:
 ```sh
 $ python --version
