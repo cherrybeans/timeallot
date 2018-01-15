@@ -26,6 +26,7 @@ source ~/.local/bin/virtualenvwrapper.sh
 ```sh
 $ mkproject -p python3.6 timeallot
 ```
+There is a `mkvirtualenv` command as well that worked for me before, but it does not move me into the project folder after jumping into the project with `workon` anymore, and only activates the virtual environment, which is strange. At least this works.
 
 #### Adding/Upgrading packages
 To install packages
