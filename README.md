@@ -61,9 +61,9 @@ $ mkproject -p python3.6 timeallot
 4. Replace the empty generated dir with real dir, and change back into project dir:
 ```sh
 $ cd ..
-$ mv -f timeallot-tmp timeallot
+$ mv -f timeallot-tmp/.* timeallot
 $ cd timeallot
-```workon
+```
 5. Confirm new Python version and re-install dependencies:
 ```sh
 $ python --version
