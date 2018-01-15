@@ -16,7 +16,7 @@ $ vim ~/.zshrc
 ```
 Put this in at the bottom of the file.
 ```
-export WORKON_HOME=~/.virtualenvs
+export WORKON_HOME=~=$HOME/virtualenvs
 VIRTUALENVWRAPPER_PYTHON='/usr/bin/python3'
 export PROJECT_HOME=$HOME/code
 source ~/.local/bin/virtualenvwrapper.sh
@@ -39,7 +39,7 @@ $ pip-compile > requirements.txt
 ```
 
 ### Upgrade Python version in virtual environment
-To do this you have to remove the old virtual environment and create a new one 
+To do this you have to remove the old virtual environment and create a new one
 and reinstall all dependencies. (https://stackoverflow.com/a/44477446)
 
 
@@ -62,7 +62,7 @@ $ mkproject -p python3.6 timeallot
 $ cd ..
 $ mv -f timeallot-tmp timeallot
 $ cd timeallot
-```workon 
+```workon
 5. Confirm new Python version and re-install dependencies:
 ```sh
 $ python --version
@@ -70,7 +70,7 @@ $ pip install -r requirements.txt
 ```
 
 ## Virtualenvwrapper commands
-Enter the virtualenvironment from anywhere. This navigates you to the 
+Enter the virtualenvironment from anywhere. This navigates you to the
 project folder and activates the virtual environment.
 ```sh
 $ workon timeallot
