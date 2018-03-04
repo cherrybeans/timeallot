@@ -27,6 +27,7 @@ ptyprocess==0.5.2         # via pexpect
 pygments==2.2.0           # via ipython
 pytz==2018.3              # via django
 pyyaml==3.12
+selenium==3.9.0
 simplegeneric==0.8.1      # via ipython
 six==1.11.0               # via django-environ, django-extensions, pip-tools, prompt-toolkit, traitlets
 sqlparse==0.2.4           # via django-debug-toolbar

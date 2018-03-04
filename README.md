@@ -98,3 +98,10 @@ $ python manage.py load_fixtures
 ```
 This only loads fixtures that have been added in the command, so to add
 new fixtures, add them in ```utils/management/commands/load_fixtures.py```.
+
+## Tests
+The functional tests runs on Selenium with the chromium-chromedriver, 
+and the driver needs to be installed on the path like this:
+```sh
+sudo apt-get install chromium-chromedriver
+```
