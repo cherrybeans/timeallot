@@ -4,7 +4,7 @@ from django.utils import timezone
 
 
 class AbstractTag(models.Model):
-    user = models.ForeignKey(TimerUser)
+    user = models.ForeignKey(TimerUser, on_delete=models.CASCADE)
     tag_name = models.CharField(max_length=30)
     color = models.CharField(max_length=10, default="e3e3e3")
 
@@ -20,22 +20,22 @@ class Category(models.Model):
 
 
 class ProjectTag(AbstractTag):
-    category = models.ForeignKey(Category, related_name='projects')
+    category = models.ForeignKey(Category, related_name='projects', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.tag_name
 
 
 class SubTag(AbstractTag):
-    parent = models.ForeignKey(ProjectTag, related_name='subtags')
+    parent = models.ForeignKey(ProjectTag, related_name='subtags', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.tag_name
 
 
 class Session(models.Model):
-    user = models.ForeignKey(TimerUser)
+    user = models.ForeignKey(TimerUser, on_delete=models.CASCADE)
     duration = models.PositiveSmallIntegerField(default=25)
     start_time = models.DateTimeField(default=timezone.now)
-    project = models.ForeignKey(ProjectTag, null=True, blank=True)
+    project = models.ForeignKey(ProjectTag, null=True, blank=True, on_delete=models.CASCADE)
     subtags = models.ManyToManyField(SubTag, blank=True)

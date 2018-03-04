@@ -6,11 +6,12 @@ Backend in Django REST framework for the focus timer timeallot.
 ## Setup virtualenv
 
 ### Setup virtualenvwrapper
-Requires installed virtualenv and Python 3.6.1. <br>
+Requires installed [virtualenv](https://virtualenv.pypa.io/en/stable/) and Python 3.6.1. <br>
 Used this for guide: http://railslide.io/virtualenvwrapper-python3.html
 
-To setup virtualenvwrapper, put this in some file somewhere that depends on your computer xD
-In my case on Ubuntu this file is found by the following command.
+To setup [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/), put this in some file somewhere that
+might be located differently on different systems.
+In my case on Ubuntu this file is found by the following command (I use the zsh shell, hence the different than usual file).
 ```sh
 $ vim ~/.zshrc
 ```
@@ -34,9 +35,17 @@ To install packages
 $ pip install -r requirements.txt
 ```
 
+I use [pip-tools](https://github.com/jazzband/pip-tools) to make the requirement files easy to understand.
 Update ```requirements.in``` with new packages then run the following command to update ```requirements.txt```
 ```sh
 $ pip-compile > requirements.txt
+```
+
+To sync your virtual environment with the generated `.txt` files, 
+use `pip-sync`. If given no argument, it syncs based on `requirements.txt`. 
+It can take several files as input, like this:
+```
+pip-sync development.txt requirements.txt
 ```
 
 ### Upgrade Python version in virtual environment

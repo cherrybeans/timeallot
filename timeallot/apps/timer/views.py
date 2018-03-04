@@ -8,7 +8,6 @@ from timeallot.apps.timer.serializers import (
 )
 
 
-
 class CategoryViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows categories to be viewed or edited.

@@ -35,6 +35,9 @@ env = environ.Env()
 env_file = str(SETTINGS_DIR.path('.env'))
 env.read_env(env_file)
 
+SHELL_PLUS = "ipython"
+
+
 # SECRET KEY
 # ------------------------------------------------------------------------------
 SECRET_KEY = env('SECRET_KEY')  # Raises ImproperlyConfigured exception if SECRET_KEY not in os.environ
@@ -52,9 +55,9 @@ DJANGO_APPS = [
 ]
 THIRD_PARTY_APPS = [
     'rest_framework',
+    'django_extensions',
 ]
 
-# Apps specific for this project go here.
 LOCAL_APPS = [
     'utils',
     'timeallot.apps.user',
@@ -67,9 +70,9 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # DATABASE CONFIGURATION
 # ------------------------------------------------------------------------------
 # Uses django-environ to accept uri format
-DATABASES = {
-    'default': env.db()  # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
-}
+# DATABASES = {
+#     'default': env.db()  # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
+# }
 
 
 # AUTHENTICATION CONFIGURATION
@@ -81,7 +84,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAdminUser',
     ],
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10,
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+
 }
 
 # EMAIL CONFIGURATION
@@ -130,12 +135,17 @@ TEMPLATES = [
 
 # MANAGER CONFIGURATION
 # ------------------------------------------------------------------------------
-ADMINS = env('ADMINS')
+# I'm having some issues importing data from my .env file, and thanks to the
+# discovery of manage.py diffsettings the culprit has been identified, although
+# I'm no further in solving it. The Tuples are being converted to strings,
+# "(('timeallot', 'timeallot@gmail.com'),)" and are ofc, no longer valid
+# values for ADMINS or MANAGERS.
+
+
+# ADMINS = env('ADMINS')
 ADMINS=(
-    ('timeallot', 'timeallot@gmail.com'),
+     ('timeallot', 'timeallot@gmail.com'),
 )
-#I'm having some issues importing data from my .env file.... -_-
-# Which is REALLY strange since it's importing the SECRET_KEY ...
 
 MANAGERS = ADMINS
 
@@ -178,14 +188,14 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# # STATIC FILE CONFIGURATION
-# # ------------------------------------------------------------------------------
-STATIC_ROOT = str(PUBLIC_ROOT('static'))
+# STATIC FILE CONFIGURATION
+# ------------------------------------------------------------------------------
+STATIC_ROOT = PUBLIC_ROOT.path('static')()
 STATIC_URL = '/static/'
 
 
 STATICFILES_DIRS = [
-    str(APPS_DIR.path('static')),
+    APPS_DIR.path('static')(),
 ]
 
 STATICFILES_FINDERS = [
@@ -196,5 +206,5 @@ STATICFILES_FINDERS = [
 
 # MEDIA CONFIGURATION
 # ------------------------------------------------------------------------------
-MEDIA_ROOT = str(PUBLIC_ROOT('media'))
+MEDIA_ROOT = str(PUBLIC_ROOT.path('media')())
 MEDIA_URL = '/media/'
