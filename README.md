@@ -101,7 +101,7 @@ new fixtures, add them in ```utils/management/commands/load_fixtures.py```.
 
 ## Tests
 The functional tests runs on Selenium with the chromium-chromedriver, 
-and the driver needs to be installed on the path like this:
+and to be able to run them the driver needs to be installed on the path.
 ```sh
 sudo apt-get install chromium-chromedriver
 ```
