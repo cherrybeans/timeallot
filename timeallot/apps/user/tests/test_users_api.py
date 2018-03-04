@@ -92,7 +92,8 @@ class CreateUsersAPITest(APITestCase):
         self.assertEqual(new_user.is_staff, False)
 
         # Try to login with the user.
-        self.assertTrue(authenticate(email='testcreate@test.com', password='testpassword'))
+        self.assertTrue(authenticate(email='testcreate@test.com', password='testpassword'),
+                        "Could not authenticate new user")
 
     def test_with_only_email(self):
         """
