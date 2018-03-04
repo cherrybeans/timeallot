@@ -3,6 +3,7 @@ timeallot URL Configuration
 """
 
 from django.conf.urls import url, include
+from django.conf import settings
 from rest_framework import routers
 
 from timeallot.apps.user import views as userviews
@@ -23,3 +24,9 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
+
+if 'debug_toolbar' in settings.INSTALLED_APPS:
+    import debug_toolbar
+    urlpatterns += [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ]
