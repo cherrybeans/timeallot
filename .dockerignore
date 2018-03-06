@@ -57,5 +57,7 @@ target/
 .idea/
 
 .env
-production.py
 *.yaml
+
+timeallot/public/
+dbdata/

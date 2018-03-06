@@ -10,10 +10,15 @@ ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env('POSTGRES_DB'),
-        'USER': env('POSTGRES_USER'),
-        'PASSWORD': env('POSTGRES_PASSWORD'),
-        'HOST': env('HOST'),
-        'PORT': '5490',
+        'NAME': 'timeallot',
+        'USER': 'timeallot',
+        'PASSWORD': 'timeallot',
+        'HOST': "db",
+        'PORT': '5432',
     }
 }
+
+SERVER_EMAIL = env('SERVER_EMAIL')
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+INTERNAL_IPS = ['127.0.0.1', '0.0.0.0']

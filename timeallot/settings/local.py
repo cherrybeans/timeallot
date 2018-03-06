@@ -29,11 +29,11 @@ FRONTEND_URL = env('FRONTEND_URL')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'timeallot_db',
+        'NAME': 'timeallot',
         'USER': 'timeallot',
         'PASSWORD': 'timeallot',
-        'HOST': '127.0.0.1',
-        'PORT': '5490:5432',
+        'HOST': 'localhost',
+        'PORT': '5490',
     }
 }
 
@@ -72,6 +72,5 @@ DEBUG_TOOLBAR_PANELS = [
 # EMAIL CONFIGURATION
 # ------------------------------------------------------------------------------
 SERVER_EMAIL = env('SERVER_EMAIL')
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 

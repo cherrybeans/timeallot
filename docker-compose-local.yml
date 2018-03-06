@@ -8,6 +8,6 @@ services:
     ports:
       - '127.0.0.1:5490:5432'
     environment:
-            POSTGRES_DB: timeallot_db
             POSTGRES_USER: timeallot
             POSTGRES_PASSWORD: timeallot
+
