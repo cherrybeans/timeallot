@@ -6,13 +6,8 @@ services:
     restart: always
     image: postgres:9.5
     ports:
-      - '127.0.0.1:5432:5432'
+      - '127.0.0.1:5490:5432'
     environment:
             POSTGRES_DB: timeallot_db
             POSTGRES_USER: timeallot
-            POSTGRES_PASSWORD: password
-
-  nginx:
-    depends_on:
-      - db
-    image:
+            POSTGRES_PASSWORD: timeallot

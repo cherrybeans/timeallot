@@ -1,5 +1,5 @@
 # Start with a Python image.
-FROM python:latest
+FROM python:3.6
 
 # Some stuff that everyone has been copy-pasting
 # since the dawn of time.
@@ -16,4 +16,7 @@ COPY . /timeallot/
 
 # Install our requirements.
 RUN pip install -U pip
-RUN pip install -Ur requirements.txt
+RUN pip install -Ur requirements/production.txt
+CMD gunicorn timeallot.wsgi:application -b 0.0.0.0:8000 --access-logfile -
+
+

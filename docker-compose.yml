@@ -7,7 +7,39 @@ services:
     image: postgres:9.5
     ports:
       - '127.0.0.1:5490:5432'
-    environment:
-            POSTGRES_DB: timeallot_db
-            POSTGRES_USER: timeallot
-            POSTGRES_PASSWORD: timeallot
+      - '172.17.0.1:5490:5432'
+    env_file: ./timeallot/settings/.env
+    volumes:
+      - ./logs/db:/var/log/postgresql
+      - dbdata:/var/lib/postgresql/data
+
+  website:
+    restart: always
+    build: ./
+    volumes:
+      - ./:/timeallot
+      - ./logs/gunicorn:/gunicorn-logfiles
+      - media:/timeallot/public/media
+      - static:/timeallot/public/static
+    depends_on:
+      - db
+    env_file: ./timeallot/settings/.env
+    ports:
+      - "8000:8000"
+
+  proxy:
+    build: ./nginx
+    ports:
+      - "1339:80"
+    volumes:
+      - static:/timeallot/public/static
+      - media:/timeallot/public/media
+      - /etc/localtime:/etc/localtime:ro
+    links:
+      - website:website
+
+
+volumes:
+  dbdata:
+  media:
+  static:

@@ -1,12 +1,9 @@
 import os
-import environ
 
-from .base import *
-
-if os.environ.get('ENV_CONFIG') in ['1', 'True', 'true']:
+if os.environ.get('PRODUCTION') == 'True':
     from .production import *
 else:
     try:
         from .local import *
     except ImportError as e:
-        raise ImportError('Couldn\'t load local settings chemie.settings.local')
+        raise ImportError("Couldn't load local settings timeallot.settings.local")

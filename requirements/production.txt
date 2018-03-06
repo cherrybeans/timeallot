@@ -4,16 +4,27 @@
 #
 #    pip-compile --output-file production.txt production.in
 #
+cached-property==1.4.0    # via docker-compose
+certifi==2018.1.18        # via requests
+chardet==3.0.4            # via requests
 click==6.7                # via pip-tools
 decorator==4.2.1          # via ipython, traitlets
 django-environ==0.4.4
 django-extensions==2.0.0
 django==2.0.2
 djangorestframework==3.7.7
+docker-compose==1.19.0
+docker-pycreds==0.2.2     # via docker
+docker==2.7.0             # via docker-compose
+dockerpty==0.4.1          # via docker-compose
+docopt==0.6.2             # via docker-compose
 first==2.0.1              # via pip-tools
+gunicorn==19.7.1
+idna==2.6                 # via requests
 ipython-genutils==0.2.0   # via traitlets
 ipython==6.2.1
 jedi==0.11.1              # via ipython
+jsonschema==2.6.0         # via docker-compose
 markdown==2.6.11
 parso==0.1.1              # via jedi
 pexpect==4.4.0            # via ipython
@@ -25,8 +36,12 @@ ptyprocess==0.5.2         # via pexpect
 pygments==2.2.0           # via ipython
 pytz==2018.3              # via django
 pyyaml==3.12
+requests==2.18.4          # via docker, docker-compose
 simplegeneric==0.8.1      # via ipython
-six==1.11.0               # via django-environ, django-extensions, pip-tools, prompt-toolkit, traitlets
+six==1.11.0               # via django-environ, django-extensions, docker, docker-compose, docker-pycreds, dockerpty, pip-tools, prompt-toolkit, traitlets, websocket-client
+texttable==0.9.1          # via docker-compose
 traitlets==4.3.2          # via ipython
 typing==3.6.4             # via django-extensions
+urllib3==1.22             # via requests
 wcwidth==0.1.7            # via prompt-toolkit
+websocket-client==0.47.0  # via docker, docker-compose
