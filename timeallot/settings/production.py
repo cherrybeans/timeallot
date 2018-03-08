@@ -2,7 +2,7 @@ from .base import *
 import raven
 import os
 
-DEBUG = env('DEBUG')
+DEBUG = env.bool('DEBUG')
 PRODUCTION = env('PRODUCTION')
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
