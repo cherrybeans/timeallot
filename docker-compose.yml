@@ -37,6 +37,11 @@ services:
     links:
       - website:website
 
+  redis:
+    image: redis:latest
+    ports:
+      - '6379:6379'
+
 
 volumes:
   dbdata:

@@ -23,6 +23,10 @@ INTERNAL_IPS = ['127.0.0.1', ]
 SERVER_URL = env('SERVER_URL')
 FRONTEND_URL = env('FRONTEND_URL')
 
+# SECRET KEY
+# ------------------------------------------------------------------------------
+SECRET_KEY = 'secretkeythatisnotsosecret'
+
 
 # DATABASE CONFIGURATION
 # ------------------------------------------------------------------------------
