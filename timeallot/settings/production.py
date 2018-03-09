@@ -48,3 +48,5 @@ RAVEN_CONFIG = {
 MIDDLEWARE += [
     'django.middleware.common.BrokenLinkEmailsMiddleware',
 ]
+
+LOGIN_REDIRECT_URL = '/'
