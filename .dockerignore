@@ -56,8 +56,5 @@ target/
 # Pycharm
 .idea/
 
-.env
 *.yaml
-
-timeallot/public/
-dbdata/
+dronerc
