@@ -129,13 +129,6 @@ TEMPLATES = [
 
 # MANAGER CONFIGURATION
 # ------------------------------------------------------------------------------
-# I'm having some issues importing data from my .env file, and thanks to the
-# discovery of manage.py diffsettings the culprit has been identified, although
-# I'm no further in solving it. The Tuples are being converted to strings,
-# "(('timeallot', 'timeallot@gmail.com'),)" and are ofc, no longer valid
-# values for ADMINS or MANAGERS.
-
-
 ADMINS = env.tuple('ADMINS')
 MANAGERS = ADMINS
 

@@ -28,7 +28,7 @@ FRONTEND_URL = env('FRONTEND_URL')
 SECRET_KEY = 'secretkeythatisnotsosecret'
 
 
-# DATABASE CONFIGURATION
+# DATABASE CONFIGURATION ======================================================
 # ------------------------------------------------------------------------------
 DATABASES = {
     'default': {

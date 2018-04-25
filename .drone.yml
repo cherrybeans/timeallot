@@ -1,14 +1,15 @@
 pipeline:
-  build:
+  tests:
     image: python:3.6
     environment:
       - POSTGRES_USER=timeallot
+    secrets: [ default_from_email, server_email ]
     commands:
       - sleep 5
       - pip3 install -r requirements/development.txt
       - ./manage.py test
     when:
-      event: [push, pull_request] # trigger step on push and pull events
+      event: [push]
 
 
 services:
