@@ -38,7 +38,7 @@ services:
       - website:website
 
   redis:
-    image: redis:latest
+    image: redis
     ports:
       - '6379:6379'
 

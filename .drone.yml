@@ -3,13 +3,21 @@ pipeline:
     image: python:3.6
     environment:
       - POSTGRES_USER=timeallot
-    secrets: [ default_from_email, server_email ]
+      - DATABASE=postgres
     commands:
       - sleep 5
-      - pip3 install -r requirements/development.txt
-      - ./manage.py test
     when:
       event: [push]
+
+  ssh:
+    image: appleboy/drone-ssh
+    host: timeallot.me
+    username: sigrid
+    secrets: [ ssh_key ]
+    port: 22
+    script:
+      - echo hello
+      - echo world
 
 
 services:
