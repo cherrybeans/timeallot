@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate
 from rest_framework import status
-from rest_framework.test import APITestCase, APIClient
+from rest_framework.test import APIClient, APITestCase
+
 from timeallot.apps.user.models import TimerUser
 
 

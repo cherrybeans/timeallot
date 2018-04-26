@@ -77,4 +77,3 @@ DEBUG_TOOLBAR_PANELS = [
 # ------------------------------------------------------------------------------
 SERVER_EMAIL = env('SERVER_EMAIL')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-

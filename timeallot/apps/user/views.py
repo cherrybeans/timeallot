@@ -1,4 +1,5 @@
 from rest_framework import viewsets
+
 from timeallot.apps.user.models import TimerUser
 from timeallot.apps.user.serializers import UserSerializer
 

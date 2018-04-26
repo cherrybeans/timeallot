@@ -2,13 +2,12 @@
 timeallot URL Configuration
 """
 
-from django.conf.urls import url, include
 from django.conf import settings
+from django.conf.urls import include, url
 from rest_framework import routers
 
-from timeallot.apps.user import views as userviews
 from timeallot.apps.timer import views as timerviews
-
+from timeallot.apps.user import views as userviews
 
 router = routers.DefaultRouter()
 router.register(r'users', userviews.UserViewSet)

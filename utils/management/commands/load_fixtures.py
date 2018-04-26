@@ -1,9 +1,9 @@
 import logging
-from django.core.management import call_command
 import signal
 import sys
 
 from django.core.management import BaseCommand as DjangoBaseCommand
+from django.core.management import call_command
 
 log = logging.getLogger(__name__)
 

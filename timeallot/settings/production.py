@@ -1,6 +1,8 @@
-from .base import *
-import raven
 import os
+
+import raven
+
+from .base import *
 
 DEBUG = env.bool('DEBUG')
 PRODUCTION = env('PRODUCTION')

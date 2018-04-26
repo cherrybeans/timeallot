@@ -1,6 +1,7 @@
+import os
+
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
-import os
 
 
 class NewVisitorTest(StaticLiveServerTestCase):

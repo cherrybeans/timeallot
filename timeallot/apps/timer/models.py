@@ -1,6 +1,7 @@
 from django.db import models
-from timeallot.apps.user.models import TimerUser
 from django.utils import timezone
+
+from timeallot.apps.user.models import TimerUser
 
 
 class AbstractTag(models.Model):

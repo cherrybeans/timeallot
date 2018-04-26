@@ -1,7 +1,6 @@
 from rest_framework import serializers
-from timeallot.apps.timer.models import (
-    Category, ProjectTag, SubTag, Session
-)
+
+from timeallot.apps.timer.models import Category, ProjectTag, Session, SubTag
 
 
 class SubtagSerializer(serializers.HyperlinkedModelSerializer):
