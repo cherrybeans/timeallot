@@ -105,3 +105,25 @@ and to be able to run them the driver needs to be installed on the path.
 ```sh
 sudo apt-get install chromium-chromedriver
 ```
+
+## Code Style
+
+This codebase uses the PEP 8 code style. It is enforced with isort, yapf and flake8.
+In addition to the standards outlined in PEP 8, we have a few guidelines
+(see `setup.cfg` for more info):
+
+* Line-length can exceed 79 characters, to 100, when convenient.
+* Always use single-quoted strings (e.g. 'timeallot'), unless a single-quote occurs within the string.
+
+Format the code with yapf in an editor plugin (eg.
+[yapf-pycharm](https://plugins.jetbrains.com/plugin/9705-yapf-pycharm) for pycharm and
+[ale](https://github.com/w0rp/ale) for vim), you can also run the following commands to format:
+```bash
+$ isort -rc timeallot functional_tests # Sort imports
+$ yapf -ir timeallot functional_tests  # Format with yapf
+```
+
+To check if it is formatted properly, run:
+```bash
+$ tox -e yapf -e flake8 -e isort
+```

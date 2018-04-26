@@ -58,3 +58,10 @@ target/
 
 .env
 *.yaml
+
+.tox/
+
+dronerc
+
+coverage.xml
+.coverage
