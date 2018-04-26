@@ -5,3 +5,8 @@ pipdeptree==0.11.0
 selenium==3.9.0
 
 tox==3.0.0
+
+-r coverage.txt
+-r flake8.txt
+-r isort.txt
+-r yapf.txt
