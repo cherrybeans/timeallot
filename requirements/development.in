@@ -1,5 +1,7 @@
--r requirements.in
+-r base.in
 
 django-debug-toolbar==1.9.1
 pipdeptree==0.11.0
 selenium==3.9.0
+
+tox==3.0.0

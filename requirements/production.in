@@ -1,4 +1,4 @@
--r requirements.in
+-r base.in
 
 gunicorn==19.7.1
 docker-compose==1.19.0

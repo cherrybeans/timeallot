@@ -7,5 +7,5 @@ psycopg2==2.7.4
 ipython==6.2.1
 
 pyyaml==3.12
-pip-tools==1.11
+pip-tools==2.0.1
 markdown==2.6.11
