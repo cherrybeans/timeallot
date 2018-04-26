@@ -1,18 +1,20 @@
 pipeline:
   tests:
     image: python:3.6
-    environment:
-      - POSTGRES_USER=timeallot
-      - DATABASE=postgres
-    commands:
-      - sleep 5
     when:
-      event: [push]
+      event: push
+    environment:
+      - LANG=C.UTF-8
+      - DATABASE=postgres
+    group: testing
+    commands:
+      - pip install tox
+      - tox -e tests
 
   ssh:
     image: appleboy/drone-ssh
     host: timeallot.me
-    username: sigrid
+    user: sigrid
     secrets: [ ssh_key ]
     port: 22
     script:
