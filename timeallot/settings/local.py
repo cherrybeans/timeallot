@@ -10,7 +10,6 @@ from .base import *
 # APP CONFIGURATION
 # DATABASE CONFIGURATION
 
-
 # GENERAL CONFIGURATION
 #  ------------------------------------------------------------------------------
 
@@ -18,7 +17,9 @@ DEBUG = True
 DEVELOPMENT = True
 
 ALLOWED_HOSTS = ['*']
-INTERNAL_IPS = ['127.0.0.1', ]
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
 
 SERVER_URL = env('SERVER_URL')
 FRONTEND_URL = env('FRONTEND_URL')
@@ -26,7 +27,6 @@ FRONTEND_URL = env('FRONTEND_URL')
 # SECRET KEY
 # ------------------------------------------------------------------------------
 SECRET_KEY = 'secretkeythatisnotsosecret'
-
 
 # DATABASE CONFIGURATION ======================================================
 # ------------------------------------------------------------------------------
@@ -41,20 +41,17 @@ DATABASES = {
     }
 }
 
-
 # APP CONFIGURATION
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += [
     'debug_toolbar',
 ]
 
-
 # MIDDLEWARE CONFIGURATION
 # ------------------------------------------------------------------------------
 MIDDLEWARE += [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
-
 
 # DEBUG-TOOLBAR CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -71,7 +68,6 @@ DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.logging.LoggingPanel',
     'debug_toolbar.panels.redirects.RedirectsPanel',
 ]
-
 
 # EMAIL CONFIGURATION
 # ------------------------------------------------------------------------------

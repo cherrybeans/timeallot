@@ -14,11 +14,12 @@ class TimerUserCreationForm(forms.ModelForm):
     fields, plus a repeated password.
     """
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
+    password2 = forms.CharField(
+        label='Password confirmation', widget=forms.PasswordInput)
 
     class Meta:
         model = TimerUser
-        fields = ('email',)
+        fields = ('email', )
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -62,28 +63,32 @@ class TimerUserAdmin(BaseUserAdmin):
     add_form = TimerUserCreationForm
     change_password_form = AdminPasswordChangeForm
 
-
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
     list_display = ('email', 'is_admin')
     list_filter = ('is_admin', 'is_active')
     fieldsets = (
-        (None, {'fields': ('email', 'password')}),
-        ('Permissions', {'fields': ('is_active', 'is_superuser')}),
-        ('Important dates', {'fields': ('last_login', 'date_joined')}),
+        (None, {
+            'fields': ('email', 'password')
+        }),
+        ('Permissions', {
+            'fields': ('is_active', 'is_superuser')
+        }),
+        ('Important dates', {
+            'fields': ('last_login', 'date_joined')
+        }),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
     # overrides get_fieldsets to use this attribute when creating a user.
-    add_fieldsets = (
-        (None, {
-            'classes': ('wide',),
-            'fields': ('email', 'password1', 'password2')
-        }),
-    )
-    search_fields = ('email',)
-    ordering = ('email',)
+    add_fieldsets = ((None, {
+        'classes': ('wide', ),
+        'fields': ('email', 'password1', 'password2')
+    }), )
+    search_fields = ('email', )
+    ordering = ('email', )
     filter_horizontal = ()
+
 
 # Register new user admin
 admin.site.register(TimerUser, TimerUserAdmin)

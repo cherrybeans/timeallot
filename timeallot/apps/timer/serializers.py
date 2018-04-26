@@ -6,7 +6,7 @@ from timeallot.apps.timer.models import Category, ProjectTag, Session, SubTag
 class SubtagSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = SubTag
-        fields = ('id', 'tag_name', 'parent', 'color', 'url',  'user')
+        fields = ('id', 'tag_name', 'parent', 'color', 'url', 'user')
 
 
 class ProjectSerializer(serializers.HyperlinkedModelSerializer):
@@ -14,7 +14,8 @@ class ProjectSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = ProjectTag
-        fields = ('id', 'tag_name', 'category', 'subtags', 'color', 'url', 'user')
+        fields = ('id', 'tag_name', 'category', 'subtags', 'color', 'url',
+                  'user')
 
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):

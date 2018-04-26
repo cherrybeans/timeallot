@@ -22,10 +22,10 @@ import environ
 # STATIC FILES CONFIGURATION
 # MEDIA FILES CONFIGURATION
 
-
 # GENERAL CONFIGURATION
 # ------------------------------------------------------------------------------
-ROOT_DIR = environ.Path(__file__) - 2  # (timeallot/settings/base.py - 2 = timeallot/)
+ROOT_DIR = environ.Path(
+    __file__) - 2  # (timeallot/settings/base.py - 2 = timeallot/)
 APPS_DIR = ROOT_DIR.path('apps/')
 PUBLIC_ROOT = ROOT_DIR.path('public/')
 SETTINGS_DIR = environ.Path(__file__) - 1
@@ -51,14 +51,9 @@ THIRD_PARTY_APPS = [
     'django_extensions',
 ]
 
-LOCAL_APPS = [
-    'utils',
-    'timeallot.apps.user',
-    'timeallot.apps.timer'
-]
+LOCAL_APPS = ['utils', 'timeallot.apps.user', 'timeallot.apps.timer']
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
-
 
 # DATABASE CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -66,7 +61,6 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # DATABASES = {
 #     'default': env.db()  # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
 # }
-
 
 # AUTHENTICATION CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -78,21 +72,22 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAdminUser',
     ],
     'PAGE_SIZE': 10,
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-
+    'DEFAULT_PAGINATION_CLASS':
+    'rest_framework.pagination.LimitOffsetPagination',
 }
 
 # EMAIL CONFIGURATION
 # ------------------------------------------------------------------------------
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
-SERVER_EMAIL = env('SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)  # Email address that error messages come from.
+SERVER_EMAIL = env(
+    'SERVER_EMAIL',
+    default=DEFAULT_FROM_EMAIL)  # Email address that error messages come from.
 EMAIL_USE_TLS = True
 EMAIL_SUBJECT_PREFIX = '[timeallot] '
 
 EMAIL_CONFIG = env.email_url()
 
 vars().update(EMAIL_CONFIG)
-
 
 # MIDDLEWARE CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -105,7 +100,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 
 # TEMPLATE CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -125,12 +119,10 @@ TEMPLATES = [
     },
 ]
 
-
 # MANAGER CONFIGURATION
 # ------------------------------------------------------------------------------
 ADMINS = env.tuple('ADMINS')
 MANAGERS = ADMINS
-
 
 # INTERNATIONALIZATION
 # ------------------------------------------------------------------------------
@@ -141,7 +133,6 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = False
 
-
 # URL CONFIGURATION
 # ------------------------------------------------------------------------------
 ROOT_URLCONF = 'timeallot.urls'
@@ -151,30 +142,31 @@ WSGI_APPLICATION = 'timeallot.wsgi.application'
 # Location of root django.contrib.admin URL, use {% raw %}{% url 'admin:index' %}{% endraw %}
 # ADMIN_URL = r'^admin/'
 
-
 # PASSWORD VALIDATION
 # ------------------------------------------------------------------------------
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # STATIC FILE CONFIGURATION
 # ------------------------------------------------------------------------------
 STATIC_ROOT = PUBLIC_ROOT.path('static')()
 STATIC_URL = '/static/'
-
 
 # STATICFILES_DIRS = [
 #     APPS_DIR.path('static')(),
@@ -184,7 +176,6 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
-
 
 # MEDIA CONFIGURATION
 # ------------------------------------------------------------------------------

@@ -16,6 +16,10 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='projecttag',
             name='category',
-            field=models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, related_name='projects', to='timer.Category'),
+            field=models.ForeignKey(
+                default=None,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name='projects',
+                to='timer.Category'),
         ),
     ]

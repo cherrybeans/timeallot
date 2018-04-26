@@ -1,10 +1,8 @@
 from rest_framework import permissions, viewsets
 
 from timeallot.apps.timer.models import Category, ProjectTag, Session, SubTag
-from timeallot.apps.timer.serializers import (CategorySerializer,
-                                              ProjectSerializer,
-                                              SessionSerializer,
-                                              SubtagSerializer)
+from timeallot.apps.timer.serializers import (
+    CategorySerializer, ProjectSerializer, SessionSerializer, SubtagSerializer)
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -13,7 +11,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
     """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
 
 
 class ProjectViewSet(viewsets.ModelViewSet):
@@ -22,7 +20,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
     """
     queryset = ProjectTag.objects.all()
     serializer_class = ProjectSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
 
 
 class SubtagViewSet(viewsets.ModelViewSet):
@@ -31,7 +29,7 @@ class SubtagViewSet(viewsets.ModelViewSet):
     """
     queryset = SubTag.objects.all()
     serializer_class = SubtagSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
 
 
 class SessionViewSet(viewsets.ModelViewSet):
@@ -40,4 +38,4 @@ class SessionViewSet(viewsets.ModelViewSet):
     """
     queryset = Session.objects.all()
     serializer_class = SessionSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )

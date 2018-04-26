@@ -10,7 +10,8 @@ class GeneralUserAPITest(APITestCase):
 
     def setUp(self):
         self.client = APIClient()
-        self.authenticated_user = TimerUser.objects.get(email='admin@admin.com')
+        self.authenticated_user = TimerUser.objects.get(
+            email='admin@admin.com')
         self.all_users = TimerUser.objects.all()
 
     def test_view_users_list_if_authenticated(self):
@@ -67,7 +68,8 @@ class CreateUsersAPITest(APITestCase):
 
     def setUp(self):
         self.client = APIClient()
-        self.authenticated_user = TimerUser.objects.get(email='admin@admin.com')
+        self.authenticated_user = TimerUser.objects.get(
+            email='admin@admin.com')
         self.all_users = TimerUser.objects.all()
 
     def test_can_create_user(self):
@@ -75,7 +77,12 @@ class CreateUsersAPITest(APITestCase):
         Ensure we can create a new user object with email and password
         """
         self.client.force_authenticate(user=self.authenticated_user)
-        response = self.client.post('/users/', {'email': 'testcreate@test.com', 'password': 'testpassword'}, format='json')
+        response = self.client.post(
+            '/users/', {
+                'email': 'testcreate@test.com',
+                'password': 'testpassword'
+            },
+            format='json')
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(TimerUser.objects.count(), 2)
@@ -93,26 +100,33 @@ class CreateUsersAPITest(APITestCase):
         self.assertEqual(new_user.is_staff, False)
 
         # Try to login with the user.
-        self.assertTrue(authenticate(email='testcreate@test.com', password='testpassword'),
-                        "Could not authenticate new user")
+        self.assertTrue(
+            authenticate(email='testcreate@test.com', password='testpassword'),
+            "Could not authenticate new user")
 
     def test_with_only_email(self):
         """
         Ensure we can create a new user object with only email.
         """
         self.client.force_authenticate(user=self.authenticated_user)
-        response = self.client.post('/users/', {'email': 'testcreate@test.com'}, format='json')
+        response = self.client.post(
+            '/users/', {'email': 'testcreate@test.com'}, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(TimerUser.objects.count(), 2)
-        self.assertEqual(TimerUser.objects.get(email='testcreate@test.com').email, 'testcreate@test.com')
+        self.assertEqual(
+            TimerUser.objects.get(email='testcreate@test.com').email,
+            'testcreate@test.com')
 
     def test_with_password_and_display_name(self):
         """
         Ensure we can create a new user object with both email and display name.
         """
         self.client.force_authenticate(user=self.authenticated_user)
-        data = {'email': 'testcreate@test.com', 'display_name': 'The Ultimate Tester'}
+        data = {
+            'email': 'testcreate@test.com',
+            'display_name': 'The Ultimate Tester'
+        }
         response = self.client.post('/users/', data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -129,15 +143,30 @@ class CreateUsersAPITest(APITestCase):
         self.client.force_authenticate(user=self.authenticated_user)
 
         # Too short
-        response = self.client.post('/users/', {'email': 'testcreate@test.com', 'password': 'abc'}, format='json')
+        response = self.client.post(
+            '/users/', {
+                'email': 'testcreate@test.com',
+                'password': 'abc'
+            },
+            format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
         # Empty
-        response = self.client.post('/users/', {'email': 'testcreate@test.com', 'password': ''}, format='json')
+        response = self.client.post(
+            '/users/', {
+                'email': 'testcreate@test.com',
+                'password': ''
+            },
+            format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
         # Special invalid characters
-        response = self.client.post('/users/', {'email': 'testcreate@test.com', 'password': 'ab1a£sdka15¥&s*-__'}, format='json')
+        response = self.client.post(
+            '/users/', {
+                'email': 'testcreate@test.com',
+                'password': 'ab1a£sdka15¥&s*-__'
+            },
+            format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
         # Final confirmation that user was not made
@@ -151,10 +180,12 @@ class CreateUsersAPITest(APITestCase):
 
     def test_with_existing_email(self):
         self.client.force_authenticate(user=self.authenticated_user)
-        response = self.client.post('/users/', {'email': 'admin@admin.com'}, format='json')
+        response = self.client.post(
+            '/users/', {'email': 'admin@admin.com'}, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_with_invalid_email(self):
         self.client.force_authenticate(user=self.authenticated_user)
-        response = self.client.post('/users/', {'email': 'invalidemail.com@'}, format='json')
+        response = self.client.post(
+            '/users/', {'email': 'invalidemail.com@'}, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)

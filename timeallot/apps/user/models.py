@@ -14,9 +14,7 @@ class TimerUserManager(BaseUserManager):
             raise ValueError('Users must have an email address')
 
         user = self.model(
-            email=self.normalize_email(email),
-            last_login=timezone.now()
-        )
+            email=self.normalize_email(email), last_login=timezone.now())
 
         user.set_password(password)
         user.save(using=self._db)
@@ -26,10 +24,7 @@ class TimerUserManager(BaseUserManager):
         """
         Creates and saves a superuser with the given email and password.
         """
-        user = self.create_user(
-            email,
-            password=password
-        )
+        user = self.create_user(email, password=password)
         user.is_admin = True
         user.is_superuser = True
         user.save(using=self._db)
@@ -39,13 +34,13 @@ class TimerUserManager(BaseUserManager):
 class TimerUser(AbstractBaseUser, PermissionsMixin):
     display_name = models.TextField(max_length=30, null=True, blank=True)
     email = models.EmailField(unique=True, verbose_name='email address')
-    date_joined = models.DateTimeField(verbose_name='date joined', default=timezone.now)
+    date_joined = models.DateTimeField(
+        verbose_name='date joined', default=timezone.now)
 
     is_active = models.BooleanField(
         default=True,
         help_text=('Designates whether this user should be treated as active.'
-                   'Unselect this instead of deleting accounts.')
-    )
+                   'Unselect this instead of deleting accounts.'))
 
     is_admin = models.BooleanField(default=False)
 
