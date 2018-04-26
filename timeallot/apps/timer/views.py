@@ -2,7 +2,8 @@ from rest_framework import permissions, viewsets
 
 from timeallot.apps.timer.models import Category, ProjectTag, Session, SubTag
 from timeallot.apps.timer.serializers import (
-    CategorySerializer, ProjectSerializer, SessionSerializer, SubtagSerializer)
+    CategorySerializer, ProjectSerializer, SessionSerializer, SubtagSerializer
+)
 
 
 class CategoryViewSet(viewsets.ModelViewSet):

@@ -6,5 +6,4 @@ else:
     try:
         from .local import *
     except ImportError as e:
-        raise ImportError(
-            "Couldn't load local settings timeallot.settings.local")
+        raise ImportError("Couldn't load local settings timeallot.settings.local")

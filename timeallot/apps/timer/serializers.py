@@ -14,8 +14,7 @@ class ProjectSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = ProjectTag
-        fields = ('id', 'tag_name', 'category', 'subtags', 'color', 'url',
-                  'user')
+        fields = ('id', 'tag_name', 'category', 'subtags', 'color', 'url', 'user')
 
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):

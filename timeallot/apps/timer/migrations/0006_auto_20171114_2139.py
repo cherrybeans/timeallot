@@ -17,9 +17,8 @@ class Migration(migrations.Migration):
             model_name='projecttag',
             name='category',
             field=models.ForeignKey(
-                default=None,
-                on_delete=django.db.models.deletion.CASCADE,
-                related_name='projects',
-                to='timer.Category'),
+                default=None, on_delete=django.db.models.deletion.CASCADE, related_name='projects',
+                to='timer.Category'
+            ),
         ),
     ]

@@ -24,8 +24,7 @@ import environ
 
 # GENERAL CONFIGURATION
 # ------------------------------------------------------------------------------
-ROOT_DIR = environ.Path(
-    __file__) - 2  # (timeallot/settings/base.py - 2 = timeallot/)
+ROOT_DIR = environ.Path(__file__) - 2  # (timeallot/settings/base.py - 2 = timeallot/)
 APPS_DIR = ROOT_DIR.path('apps/')
 PUBLIC_ROOT = ROOT_DIR.path('public/')
 SETTINGS_DIR = environ.Path(__file__) - 1
@@ -72,16 +71,15 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAdminUser',
     ],
     'PAGE_SIZE': 10,
-    'DEFAULT_PAGINATION_CLASS':
-    'rest_framework.pagination.LimitOffsetPagination',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
 }
 
 # EMAIL CONFIGURATION
 # ------------------------------------------------------------------------------
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
 SERVER_EMAIL = env(
-    'SERVER_EMAIL',
-    default=DEFAULT_FROM_EMAIL)  # Email address that error messages come from.
+    'SERVER_EMAIL', default=DEFAULT_FROM_EMAIL
+)  # Email address that error messages come from.
 EMAIL_USE_TLS = True
 EMAIL_SUBJECT_PREFIX = '[timeallot] '
 
@@ -146,20 +144,16 @@ WSGI_APPLICATION = 'timeallot.wsgi.application'
 # ------------------------------------------------------------------------------
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME':
-        'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME':
-        'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME':
-        'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME':
-        'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 

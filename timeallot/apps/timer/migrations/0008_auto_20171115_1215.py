@@ -19,9 +19,8 @@ class Migration(migrations.Migration):
             model_name='session',
             name='user',
             field=models.ForeignKey(
-                default=1,
-                on_delete=django.db.models.deletion.CASCADE,
-                to=settings.AUTH_USER_MODEL),
+                default=1, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL
+            ),
             preserve_default=False,
         ),
         migrations.AlterField(
@@ -33,10 +32,9 @@ class Migration(migrations.Migration):
             model_name='projecttag',
             name='category',
             field=models.ForeignKey(
-                default=1,
-                on_delete=django.db.models.deletion.CASCADE,
-                related_name='projects',
-                to='timer.Category'),
+                default=1, on_delete=django.db.models.deletion.CASCADE, related_name='projects',
+                to='timer.Category'
+            ),
         ),
         migrations.AlterField(
             model_name='projecttag',
@@ -52,10 +50,9 @@ class Migration(migrations.Migration):
             model_name='session',
             name='project',
             field=models.ForeignKey(
-                blank=True,
-                null=True,
-                on_delete=django.db.models.deletion.CASCADE,
-                to='timer.ProjectTag'),
+                blank=True, null=True, on_delete=django.db.models.deletion.CASCADE,
+                to='timer.ProjectTag'
+            ),
         ),
         migrations.AlterField(
             model_name='session',

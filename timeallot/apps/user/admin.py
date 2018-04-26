@@ -1,8 +1,7 @@
 from django import forms
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from django.contrib.auth.forms import (AdminPasswordChangeForm,
-                                       ReadOnlyPasswordHashField)
+from django.contrib.auth.forms import AdminPasswordChangeForm, ReadOnlyPasswordHashField
 from django.contrib.auth.models import Group
 
 from .models import TimerUser
@@ -14,8 +13,7 @@ class TimerUserCreationForm(forms.ModelForm):
     fields, plus a repeated password.
     """
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(
-        label='Password confirmation', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
 
     class Meta:
         model = TimerUser
@@ -81,10 +79,12 @@ class TimerUserAdmin(BaseUserAdmin):
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
     # overrides get_fieldsets to use this attribute when creating a user.
-    add_fieldsets = ((None, {
-        'classes': ('wide', ),
-        'fields': ('email', 'password1', 'password2')
-    }), )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide', ),
+            'fields': ('email', 'password1', 'password2')
+        }),
+    )
     search_fields = ('email', )
     ordering = ('email', )
     filter_horizontal = ()
