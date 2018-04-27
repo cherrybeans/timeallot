@@ -27,7 +27,8 @@ source ~/.local/bin/virtualenvwrapper.sh
 ```sh
 $ mkproject -p python3.6 timeallot
 ```
-There is a `mkvirtualenv` command as well that worked for me before, but it does not move me into the project folder after jumping into the project with `workon` anymore, and only activates the virtual environment, which is strange. At least this works.
+There is a `mkvirtualenv` command as well that worked for me before, but it does not move me into the project folder 
+after jumping into the project with `workon` anymore, and only activates the virtual environment, which is strange. At least this works.
 
 #### Adding/Upgrading packages
 To install packages for development
@@ -36,16 +37,21 @@ $ pip install -r requirements/development.txt
 ```
 
 I use [pip-tools](https://github.com/jazzband/pip-tools) to make the requirement files easy to understand.
-Update ```requirements.in``` with new packages then run the following command to update ```requirements.txt```
+To add a dependency, add the requirement to ```base.in``` then run the following command to 
+update ```development.txt```, ```production.txt``` and ```test.txt```.
 ```sh
-$ pip-compile > requirements.txt
+$ python manage.py compile_requirements
+```
+If you add a dependency to anything else than ```base.in```, you may also choose
+to compile the affected file separately like this:
+```sh
+$ pip-compile requirements/development.in
 ```
 
 To sync your virtual environment with the generated `.txt` files, 
-use `pip-sync`. If given no argument, it syncs based on `requirements.txt`. 
-It can take several files as input, like this:
+use `pip-sync`. It can take several files as input, like this:
 ```
-pip-sync development.txt requirements.txt
+pip-sync requirements/development.txt requirements/production.txt
 ```
 
 ### Upgrade Python version in virtual environment
