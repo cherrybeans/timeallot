@@ -1,16 +1,4 @@
 pipeline:
-  tests:
-    image: python:3.6
-    when:
-      event: push
-    environment:
-      - LANG=C.UTF-8
-      - DATABASE=postgres
-    group: testing
-    commands:
-      - pip install tox
-      - tox -e tests
-
   isort:
     image: python:3.6
     when:
@@ -43,16 +31,6 @@ pipeline:
     commands:
       - pip install tox
       - tox -e yapf
-
-  coverage:
-    image: python:3.6
-    when:
-      event: push
-    environment:
-      - LANG=C.UTF-8
-    commands:
-      - pip install tox
-      - tox -e coverage
 
   ssh:
     image: appleboy/drone-ssh
