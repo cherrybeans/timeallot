@@ -1,0 +1,13 @@
+-   model: user.timeruser
+    pk: 1
+    fields:
+        password: pbkdf2_sha256$100000$KSrYXL0g6WVV$mLYPsdQp3nvCP+JowxJcepLoAGmhrb4AMvCu6C863Es=
+        last_login: 2018-03-04 16:57:29.734284
+        is_superuser: true
+        display_name: null
+        email: test@admin.com
+        date_joined: 2018-03-04 00:45:00.303033
+        is_active: true
+        is_admin: true
+        groups: []
+        user_permissions: []
