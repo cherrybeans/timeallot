@@ -59,7 +59,8 @@ pipeline:
     host: timeallot.me
     secrets: [ ssh_username, ssh_key ]
     port: 22
-    when: event: push
+    when:
+      event: push
     script:
       - ls
       - echo hello

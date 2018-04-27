@@ -76,14 +76,14 @@ REST_FRAMEWORK = {
 
 # EMAIL CONFIGURATION
 # ------------------------------------------------------------------------------
-DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL') or "test@mail.no"
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='test <noreply@mydomain.com>')
 SERVER_EMAIL = env(
     'SERVER_EMAIL', default=DEFAULT_FROM_EMAIL
 )  # Email address that error messages come from.
 EMAIL_USE_TLS = True
 EMAIL_SUBJECT_PREFIX = '[timeallot] '
 
-EMAIL_CONFIG = env.email_url()
+EMAIL_CONFIG = env.email_url(default='smtp://noreply@mydomain.com:notapassword@smtp.mydomain.com:587')
 
 vars().update(EMAIL_CONFIG)
 
@@ -119,7 +119,7 @@ TEMPLATES = [
 
 # MANAGER CONFIGURATION
 # ------------------------------------------------------------------------------
-ADMINS = env.tuple('ADMINS') or ("test", "test@mail.no")
+ADMINS = env.tuple('ADMINS', default=('test', 'test@mail.no'))
 MANAGERS = ADMINS
 
 # INTERNATIONALIZATION
