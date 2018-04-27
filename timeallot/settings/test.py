@@ -20,4 +20,3 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ALLOWED_HOSTS = ['*']
 AUTH_USER_MODEL = 'user.TimerUser'
-

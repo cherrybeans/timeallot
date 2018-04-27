@@ -1,9 +1,9 @@
 from django.contrib.auth import authenticate
+from django.test import tag
 from rest_framework import status
 from rest_framework.test import APIClient, APITestCase
 
 from timeallot.apps.user.models import TimerUser
-from django.test import tag
 
 
 class GeneralUserAPITest(APITestCase):
@@ -28,7 +28,9 @@ class GeneralUserAPITest(APITestCase):
         Ensure unauthenticated users cannot see the users list.
         """
         response = self.client.get('/users/')
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN, "Unauthenticated users can see users")
+        self.assertEqual(
+            response.status_code, status.HTTP_403_FORBIDDEN, "Unauthenticated users can see users"
+        )
 
     @tag('finish-the-test')
     def test_cannot_view_users_list_if_not_permission(self):
@@ -157,7 +159,9 @@ class CreateUsersAPITest(APITestCase):
                 'password': ''
             }, format='json'
         )
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST, "Fail on empty password")
+        self.assertEqual(
+            response.status_code, status.HTTP_400_BAD_REQUEST, "Fail on empty password"
+        )
 
         # Special invalid characters. However maybe people should be allowed to use these?
         response = self.client.post(
@@ -166,7 +170,9 @@ class CreateUsersAPITest(APITestCase):
                 'password': 'ab1a£sdka15¥&s*-__'
             }, format='json'
         )
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST, "Fail on invalid characters")
+        self.assertEqual(
+            response.status_code, status.HTTP_400_BAD_REQUEST, "Fail on invalid characters"
+        )
 
         # Final confirmation that user was not made
         self.assertEqual(TimerUser.objects.count(), 1)
