@@ -76,7 +76,7 @@ REST_FRAMEWORK = {
 
 # EMAIL CONFIGURATION
 # ------------------------------------------------------------------------------
-DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL') or "test@mail.no"
 SERVER_EMAIL = env(
     'SERVER_EMAIL', default=DEFAULT_FROM_EMAIL
 )  # Email address that error messages come from.
@@ -119,7 +119,7 @@ TEMPLATES = [
 
 # MANAGER CONFIGURATION
 # ------------------------------------------------------------------------------
-ADMINS = env.tuple('ADMINS')
+ADMINS = env.tuple('ADMINS') or ("test", "test@mail.no")
 MANAGERS = ADMINS
 
 # INTERNATIONALIZATION
