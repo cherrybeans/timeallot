@@ -83,7 +83,9 @@ SERVER_EMAIL = env(
 EMAIL_USE_TLS = True
 EMAIL_SUBJECT_PREFIX = '[timeallot] '
 
-EMAIL_CONFIG = env.email_url(default='smtp://noreply@mydomain.com:notapassword@smtp.mydomain.com:587')
+EMAIL_CONFIG = env.email_url(
+    default='smtp://noreply@mydomain.com:notapassword@smtp.mydomain.com:587'
+)
 
 vars().update(EMAIL_CONFIG)
 
