@@ -1,7 +1,7 @@
 pipeline:
 
   tests:
-    image: python:3.6
+    image: timeallot/testbase-tox
     when:
       event: push
     environment:
@@ -13,7 +13,7 @@ pipeline:
       - tox -e tests
 
   isort:
-    image: python:3.6
+    image: timeallot/testbase-tox
     when:
       event: push
     environment:
@@ -24,7 +24,7 @@ pipeline:
       - tox -e isort
 
   flake8:
-    image: python:3.6
+    image: timeallot/testbase-tox
     when:
       event: push
     environment:
@@ -35,7 +35,7 @@ pipeline:
       - tox -e flake8
 
   yapf:
-    image: python:3.6
+    image: timeallot/testbase-tox
     when:
       event: push
     environment:
@@ -46,7 +46,7 @@ pipeline:
       - tox -e yapf
 
   coverage:
-    image: python:3.6
+    image: timeallot/testbase-tox
     when:
       event: push
     environment:
@@ -63,11 +63,12 @@ pipeline:
     port: 22
     when:
       event: push
+      branch: prod
     command_timeout: 600
     group: result
     script:
       - cd sites/timeallot-staging/
-      - git stash && git fetch && git reset origin/master --hard && docker-compose up -d --build --force-recreate && exit
+      - git stash && git fetch && git reset origin/prod --hard && docker-compose up -d --build --force-recreate && exit
 
 services:
   postgres:
