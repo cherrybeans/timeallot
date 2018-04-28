@@ -6,6 +6,7 @@ from rest_framework.test import APIClient, APITestCase
 from timeallot.apps.user.models import TimerUser
 
 
+@tag('finish-the-test')
 class GeneralUserAPITest(APITestCase):
     fixtures = ['test_users']
 
@@ -69,6 +70,7 @@ class GeneralUserAPITest(APITestCase):
         self.fail("Finish the test!")
 
 
+@tag('finish-the-test')
 class CreateUsersAPITest(APITestCase):
     fixtures = ['test_users']
 

@@ -1,4 +1,61 @@
 pipeline:
+
+  tests:
+    image: python:3.6
+    when:
+      event: push
+    environment:
+      - LANG=C.UTF-8
+      - DATABASE=postgres
+    group: testing
+    commands:
+      - pip install tox
+      - tox -e tests
+
+  isort:
+    image: python:3.6
+    when:
+      event: push
+    environment:
+      - LANG=C.UTF-8
+    group: testing
+    commands:
+      - pip install tox
+      - tox -e isort
+
+  flake8:
+    image: python:3.6
+    when:
+      event: push
+    environment:
+      - LANG=C.UTF-8
+    group: testing
+    commands:
+      - pip install tox
+      - tox -e flake8
+
+  yapf:
+    image: python:3.6
+    when:
+      event: push
+    environment:
+      - LANG=C.UTF-8
+    group: testing
+    commands:
+      - pip install tox
+      - tox -e yapf
+
+  coverage:
+    image: python:3.6
+    when:
+      event: push
+    environment:
+      - LANG=C.UTF-8
+    group: result
+    commands:
+      - pip install tox
+      - tox -e coverage
+
   ssh:
     image: appleboy/drone-ssh
     host: timeallot.me
@@ -7,9 +64,11 @@ pipeline:
     when:
       event: push
     command_timeout: 600
+    group: result
     script:
       - cd sites/timeallot-staging/
-      - git fetch && git reset origin/master --hard && docker-compose build && docker container stop timeallotstaging_website_1  && docker-compose up -d --force-recreate && docker exec -it timeallotstaging_website_1 bash &&  python manage.py collectstatic --no-input && exit && exit
+      - git stash && git fetch && git reset origin/master --hard && docker-compose up -d --build --force-recreate && exit
+
 services:
   postgres:
     image: postgres:9.5

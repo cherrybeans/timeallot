@@ -17,6 +17,8 @@ COPY . /timeallot/
 # Install our requirements.
 RUN pip install -U pip
 RUN pip install -Ur requirements/production.txt
+ENV PRODUCTION=True
+RUN python manage.py collectstatic --no-input
 
 CMD gunicorn timeallot.wsgi:application -b 0.0.0.0:8000 --access-logfile -
 
