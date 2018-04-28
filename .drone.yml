@@ -1,7 +1,7 @@
 pipeline:
 
   tests:
-    image: python:3.6
+    image: timeallot/testbase-tox
     when:
       event: push
     environment:
@@ -9,51 +9,46 @@ pipeline:
       - DATABASE=postgres
     group: testing
     commands:
-      - pip install tox
       - tox -e tests
 
   isort:
-    image: python:3.6
+    image: timeallot/testbase-tox
     when:
       event: push
     environment:
       - LANG=C.UTF-8
     group: testing
     commands:
-      - pip install tox
       - tox -e isort
 
   flake8:
-    image: python:3.6
+    image: timeallot/testbase-tox
     when:
       event: push
     environment:
       - LANG=C.UTF-8
     group: testing
     commands:
-      - pip install tox
       - tox -e flake8
 
   yapf:
-    image: python:3.6
+    image: timeallot/testbase-tox
     when:
       event: push
     environment:
       - LANG=C.UTF-8
     group: testing
     commands:
-      - pip install tox
       - tox -e yapf
 
   coverage:
-    image: python:3.6
+    image: timeallot/testbase-tox
     when:
       event: push
     environment:
       - LANG=C.UTF-8
     group: result
     commands:
-      - pip install tox
       - tox -e coverage
 
   ssh:
@@ -63,11 +58,12 @@ pipeline:
     port: 22
     when:
       event: push
+      branch: prod
     command_timeout: 600
     group: result
     script:
       - cd sites/timeallot-staging/
-      - git stash && git fetch && git reset origin/master --hard && docker-compose up -d --build --force-recreate && exit
+      - git stash && git fetch && git reset origin/prod --hard && docker-compose up -d --build --force-recreate && exit
 
 services:
   postgres:
